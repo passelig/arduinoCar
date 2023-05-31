@@ -12,35 +12,54 @@ void setup() {
   pinMode(rightForwardPin, OUTPUT);  
 }
 void loop() {
-  delay(1000);    
-  //driveForward
-  digitalWrite(leftForwardPin, HIGH);
-  digitalWrite(rightForwardPin, HIGH);
-  digitalWrite(leftReversePin, LOW);
-  digitalWrite(rightReversePin, LOW);
+  driveForward ();
   delay(1000);
-  //driveReverse
-  digitalWrite(leftForwardPin, LOW);
-  digitalWrite(rightForwardPin, LOW);
-  digitalWrite(leftReversePin, HIGH);
-  digitalWrite(rightReversePin, HIGH);
-  delay(1000);  
-  //turnRight
-  digitalWrite(leftForwardPin, HIGH);
-  digitalWrite(rightForwardPin, LOW);
-  digitalWrite(leftReversePin, LOW);
-  digitalWrite(rightReversePin, HIGH);
+
+  driveReverse();
   delay(1000);
-  //turnLeft 
-  digitalWrite(leftForwardPin, LOW);
-  digitalWrite(rightForwardPin, HIGH);
-  digitalWrite(leftReversePin, HIGH);
-  digitalWrite(rightReversePin, LOW);
-  delay(1000);  
-  //stop      
-  digitalWrite(leftForwardPin, LOW);
-  digitalWrite(rightForwardPin, LOW);
-  digitalWrite(leftReversePin, LOW);
-  digitalWrite(rightReversePin, LOW);
+
+  turnRight();
+  delay(1000); 
+  
+  turnLeft(); 
+  delay(1000);      
+ 
+  stop();
   delay(1000);  
 }
+
+
+void driveForward () {
+  digitalWrite(leftForwardPin, HIGH);
+  digitalWrite(rightForwardPin, HIGH);
+  digitalWrite(leftReversePin, LOW);
+  digitalWrite(rightReversePin, LOW);
+}  
+
+void driveReverse() {
+  digitalWrite(leftForwardPin, LOW);
+  digitalWrite(rightForwardPin, LOW);
+  digitalWrite(leftReversePin, HIGH);
+  digitalWrite(rightReversePin, HIGH);
+}
+
+void turnRight(){
+  digitalWrite(leftForwardPin, HIGH);
+  digitalWrite(rightForwardPin, LOW);
+  digitalWrite(leftReversePin, LOW);
+  digitalWrite(rightReversePin, HIGH);
+}
+
+void turnLeft () {
+  digitalWrite(leftForwardPin, LOW);
+  digitalWrite(rightForwardPin, HIGH);
+  digitalWrite(leftReversePin, HIGH);
+  digitalWrite(rightReversePin, LOW);
+}
+
+ void stop(){
+  digitalWrite(leftForwardPin, LOW);
+  digitalWrite(rightForwardPin, LOW);
+  digitalWrite(leftReversePin, LOW);
+  digitalWrite(rightReversePin, LOW);
+ }
