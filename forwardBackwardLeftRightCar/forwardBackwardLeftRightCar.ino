@@ -1,15 +1,26 @@
 
-#define leftReversePin 10
-#define leftForwardPin 11
-#define rightReversePin 8
-#define rightForwardPin 9
+
+
+#define leftReversePin 12
+#define leftForwardPin 13
+#define leftSpeedPin 5
+
+#define rightReversePin 10
+#define rightForwardPin 11
+#define rightSpeedPin 6
+#define speed 170
 
 void setup() {
   Serial.begin(9600);
+  pinMode(leftSpeedPin, OUTPUT);
+  pinMode(rightSpeedPin, OUTPUT);  
   pinMode(leftReversePin, OUTPUT);
   pinMode(rightReversePin, OUTPUT);
   pinMode(leftForwardPin, OUTPUT);
   pinMode(rightForwardPin, OUTPUT);  
+  analogWrite(leftSpeedPin, speed);
+  analogWrite(rightSpeedPin, speed);
+  delay(1000);  
 }
 void loop() {
   driveForward ();
