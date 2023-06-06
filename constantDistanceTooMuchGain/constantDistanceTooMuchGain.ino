@@ -7,7 +7,8 @@ int echoPin = 9;
 #define rightForwardPin 11
 #define rightPWMSpeedPin 5
 #define leftPWMSpeedPin 6
-#define defaultSpeed 255
+#define defaultSpeed 150
+#define setPoint 30
 
 void setup() {
   Serial.begin(9600);
@@ -32,9 +33,15 @@ void loop() {
   int distance = readDistance();
   Serial.println("Distance = " + String(distance));
 
-  if (distance > 32) {
+  int deviation = abs(setPoint - distance);
+  int speed = 130 + deviation * 10;
+  if (speed > 255){
+    speed = 255;
+  } 
+  
+  if (distance > setPoint + 1) {
     driveForward();
-  } else if (distance < 30){
+  } else if (distance < setPoint - 1){
     driveBackward();
   } else {
     stop();
