@@ -32,14 +32,13 @@ void loop() {
   int distance = readDistance();
   Serial.println("Distance = " + String(distance));
 
-  if (distance > 35) {
+  if (distance > 32) {
     driveForward();
   } else if (distance < 30){
     driveBackward();
   } else {
     stop();
   }
-  delay(255);
 }
 
 
