@@ -1,7 +1,6 @@
 //#include <Servo.h>
-int trigPin = 6;
-int echoPin = 7;
-int pingTravelTime;
+int trigPin = 8;
+int echoPin = 9;
 float distance;
 //int pos = 45;
 
@@ -26,17 +25,9 @@ void loop()
   digitalWrite(trigPin,HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin,LOW);
-  pingTravelTime = pulseIn(echoPin,HIGH);
+  int pingTravelTime = pulseIn(echoPin,HIGH);
   
   distance = ((pingTravelTime-200.)/60.)+1;
   Serial.println("  Distance = " + String(distance));
-  //Serial.print();
-  //if ((distance <= 50) && (distance >=10)){
-    //pos = map( distance, 50,10,45,135);
-    //Serial.print(" postion = ");
-    //Serial.print(pos);
-    //servo_9.write(pos);    
-  //}
-    
-  //Serial.println();
+  
 }
