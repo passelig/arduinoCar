@@ -1,13 +1,13 @@
 
 
 
-#define leftReversePin 12
-#define leftForwardPin 13
-#define leftSpeedPin 5
+#define leftReversePin 16
+#define leftForwardPin 17
+#define leftSpeedPin 2
 
-#define rightReversePin 10
-#define rightForwardPin 11
-#define rightSpeedPin 6
+#define rightReversePin 18
+#define rightForwardPin 5
+#define rightSpeedPin 4
 #define speed 170
 
 void setup() {
