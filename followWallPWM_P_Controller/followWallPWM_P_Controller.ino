@@ -1,14 +1,12 @@
-int trigPin = 13;
-int echoPin = 12;
+int trigPin = 8;
+int echoPin = 9;
 
-#define leftReversePin 16
-#define leftForwardPin 17
-
-#define rightReversePin 18
-#define rightForwardPin 5
-
-#define rightPWMSpeedPin 4
-#define leftPWMSpeedPin 2
+#define leftReversePin 12
+#define leftForwardPin 13
+#define rightReversePin 10
+#define rightForwardPin 11
+#define rightPWMSpeedPin 5
+#define leftPWMSpeedPin 6
 
 #define defaultSpeed 190
 #define setPoint 30
@@ -41,7 +39,7 @@ void loop() {
 
   int deviation = setPoint - distance;
   calculateAndSetPWMSpeed(deviation);
-   
+  //delay(200);
 }
 
 void calculateAndSetPWMSpeed(int deviation) {
