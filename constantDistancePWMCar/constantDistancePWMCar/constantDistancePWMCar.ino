@@ -1,18 +1,16 @@
-int trigPin = 13;
-int echoPin = 12;
+int trigPin = 8;
+int echoPin = 9;
 
-
-#define leftReversePin 16
-#define leftForwardPin 17
-
-#define rightReversePin 18
-#define rightForwardPin 5
-
-#define rightPWMSpeedPin 4
-#define leftPWMSpeedPin 2
+#define leftReversePin 12
+#define leftForwardPin 13
+#define rightReversePin 10
+#define rightForwardPin 11
+#define rightPWMSpeedPin 5
+#define leftPWMSpeedPin 6
 
 #define defaultSpeed 150
 #define setPoint 30
+int distance = setPoint;
 
 void setup() {
   Serial.begin(9600);
@@ -34,29 +32,25 @@ void setup() {
   driveForward();
 }
 void loop() {
-  int distance = readDistance();
+  distance = readDistance();
   Serial.println("Distance = " + String(distance));
-
-  int deviation = abs(setPoint - distance);
-  calculateAndSetPWMSpeed(deviation);
-
   if (distance > setPoint + 2) {
+    calculateAndSetPWMSpeed(); // hvor mye pådrag/gass?
     driveForward();
   } else if (distance < setPoint - 2) {
+    calculateAndSetPWMSpeed(); // hvor mye pådrag/gass?
     driveBackward();
   } else {
     stop();
   }
 }
 
-void calculateAndSetPWMSpeed(int deviation) {
-  int speed = 120 + deviation * 10;
-  if (speed > 255) {
-    speed = 255;
-  }
+void calculateAndSetPWMSpeed() {
+  int deviation = abs(setPoint - distance); // deviation (avvik) i centimeter
+  int speed = deviation * 10; 
+  speed = constrain(speed,80,255); // ved speed < 80 går ikke motorene
   analogWrite(leftPWMSpeedPin, speed);
   analogWrite(rightPWMSpeedPin, speed);
-
   Serial.println("Deviation: " + String(deviation) + " , Speed : " + String(speed));
 }
 
